@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Satellite Attitude Control — CesiumJS</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <!-- Telemetry HUD -->
+  <div id="hud">
+    <h3>Satellite Telemetry</h3>
+    <div class="hud-row"><span>Mode</span><span id="hud-mode">Sun-Pointing</span></div>
+    <div class="hud-row"><span>Roll</span><span id="hud-roll">0.00°</span></div>
+    <div class="hud-row"><span>Pitch</span><span id="hud-pitch">0.00°</span></div>
+    <div class="hud-row"><span>Yaw</span><span id="hud-yaw">0.00°</span></div>
+    <div class="hud-row"><span>ω X</span><span id="hud-wx">0.000 °/s</span></div>
+    <div class="hud-row"><span>ω Y</span><span id="hud-wy">0.000 °/s</span></div>
+    <div class="hud-row"><span>ω Z</span><span id="hud-wz">0.000 °/s</span></div>
+    <div class="hud-row"><span>Altitude</span><span id="hud-alt">550 km</span></div>
+    <div class="hud-row"><span>Orbit Time</span><span id="hud-time">0 s</span></div>
+  </div>
+
+  <!-- Controls Panel -->
+  <div id="controls">
+    <h3>Attitude Mode</h3>
+    <button class="mode-btn active" data-mode="sun">Sun-Pointing</button>
+    <button class="mode-btn" data-mode="nadir">Nadir-Pointing</button>
+    <button class="mode-btn" data-mode="inertial">Inertial Hold</button>
+    <button class="mode-btn" data-mode="manual">Manual</button>
+
+    <div id="manual-controls" class="hidden">
+      <h4>Manual Torque</h4>
+      <label>Roll Torque <span id="roll-val">0</span>°/s²
+        <input type="range" id="roll-input" min="-5" max="5" step="0.1" value="0" />
+      </label>
+      <label>Pitch Torque <span id="pitch-val">0</span>°/s²
+        <input type="range" id="pitch-input" min="-5" max="5" step="0.1" value="0" />
+      </label>
+      <label>Yaw Torque <span id="yaw-input-label">0</span>°/s²
+        <input type="range" id="yaw-input" min="-5" max="5" step="0.1" value="0" />
+      </label>
+    </div>
+
+    <h3 style="margin-top:16px">Simulation Speed</h3>
+    <label><span id="speed-val">60</span>× real time
+      <input type="range" id="speed-input" min="1" max="120" step="1" value="60" />
+    </label>
+
+    <h3 style="margin-top:16px">View</h3>
+    <button id="btn-follow">Follow Satellite</button>
+    <button id="btn-global">Global View</button>
+    <button id="btn-track">Toggle Ground Track</button>
+    <button id="btn-axes">Toggle Body Axes</button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
